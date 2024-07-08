@@ -1,6 +1,7 @@
 import torch
 from modelscope import snapshot_download
 import os
+
 from transformers import AutoModel,AutoTokenizer
 
 from flask import Flask,request,jsonify
@@ -9,6 +10,10 @@ from LLMkernel import LLMkernel
 app=Flask(__name__)
 
 model_dir="../models/glm4/ZhipuAI/glm-4-9b-chat"
+
+#MULTI-GPU-DEPLOYMENT
+#modelscope also has class AutoModel,but we need transformers.AutoModel to 
+#achieve MULTI-GPU-DEPLOYMENT
 os.environ["CUDA_VISIBLE_DEVICES"]=','.join(map(str,[0,1]))
 with torch.no_grad():
     LLM=AutoModel.from_pretrained(model_dir,trust_remote_code=True,device_map='auto').float().eval()
