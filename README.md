@@ -71,7 +71,7 @@ INSERT INTO book (title) VALUES
 
 **GPU**
 
-4090D-24G 数量： 2  显存： 24 GB$\times$ 2
+4090-24G 数量： 2  显存： 24 GB$\times$ 2
 
 **CPU**
 
